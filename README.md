@@ -1,4 +1,4 @@
-Azure Partner Admin
+Azure Partner Linker
 
 A PowerShell script for managing the Microsoft Partner ID (MPN ID) linkage on Azure customer tenants.
 
