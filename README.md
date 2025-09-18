@@ -1,4 +1,4 @@
-# Azure Partner Linker
+# PmOne - Azure Partner Linker
 
 ![PowerShell](https://img.shields.io/badge/Powershell-v5%2B-blue?logo=powershell)
 ![Azure](https://img.shields.io/badge/Azure-ManagementPartner-blue?logo=microsoft-azure)
@@ -45,15 +45,13 @@
 
 1. **Klonen** Sie das Repository:
     ```powershell
-    git clone https://github.com/dein-benutzername/azure-partnerid-manager.git
-    cd azure-partnerid-manager
+    git clone https://github.com/IchiBati/AzurePartnerLinker.git
     ```
 
 2. **Skript starten:**  
     ```powershell
-    .\azure-partnerid.ps1
+    .\AzurePartnerLinker.ps1
     ```
-    *(Je nach Skript-Namen bitte ersetzen)*
 
 Das Skript prüft automatisch, ob die benötigten Module vorhanden (oder als lokale Bundles bereitgestellt) sind und installiert/importiert diese bei Bedarf.
 
@@ -80,7 +78,6 @@ Das Skript prüft automatisch, ob die benötigten Module vorhanden (oder als lok
 
 ## 🖼️ Beispiel
 
-![Konsolen-Beispiel](docs/screenshot-demo.png) <!-- Füge z.B. einen Screenshot hinzu -->
 
 ```text
 Geben Sie die Tenant-ID des Kunden ein: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -92,18 +89,27 @@ Wählen Sie eine Aktion:
 1. Partner ID setzen/verknüpfen (tenant-weit)
 2. Verknüpfte Partner ID abrufen und prüfen
 ...
+```
+---
 
-❔ Troubleshooting 
+## ❔ Troubleshooting
 
-    Fehler bei Modul-Installation:
-    Stellen Sie sicher, dass Ihr Benutzer das Installieren von PowerShell-Modulen darf (Set-ExecutionPolicy/Internetverbindung ok)
-    Authentifizierungsfehler:
-    Prüfen Sie TenantID, AppID, Secret, Berechtigungen des SP
-    Modul-Konflikte:
-    Entfernen Sie alte AzureRM-Module (werden nicht unterstützt).
-    Unbekannte Fehler:
-    Sichten Sie die detaillierten Log-Einträge unter %USERPROFILE%\azure_script_log.txt
+- **Fehler bei Modul-Installation:**  
+  Stellen Sie sicher, dass Ihr Benutzer PowerShell-Module installieren darf (`Set-ExecutionPolicy`) und eine aktive Internetverbindung besteht.
+
+- **Authentifizierungsfehler:**  
+  Überprüfen Sie Tenant ID, App ID, Client Secret sowie die Berechtigungen des Service Principals.
+
+- **Modul-Konflikte:**  
+  Entfernen Sie veraltete `AzureRM`-Module. Diese werden **nicht** unterstützt und können zu Konflikten führen.
+
+- **Unbekannte Fehler:**  
+  Sichten Sie die detaillierten Log-Einträge in der Datei  
+  `%USERPROFILE%\azure_script_log.txt`  
+  für weitere Hinweise.
      
+
+
 
 📜 Lizenz 
 
