@@ -1,100 +1,110 @@
-Azure Partner Linker
+# Azure Partner Linker
 
-A PowerShell script for managing the Microsoft Partner ID (MPN ID) linkage on Azure customer tenants.
+![PowerShell](https://img.shields.io/badge/Powershell-v5%2B-blue?logo=powershell)
+![Azure](https://img.shields.io/badge/Azure-ManagementPartner-blue?logo=microsoft-azure)
 
-📖 Description
+> Ein interaktives PowerShell-Skript zur tenantweiten Verwaltung von Microsoft Partner-IDs in Azure. Es erlaubt Setzen, Prüfen, Aktualisieren und Entfernen der Partner-ID via Service Principal Login.
 
-This script provides a user-friendly menu to connect to an Azure tenant using a Service Principal and then manage the Partner ID association. This is crucial for Microsoft Partners to get credit for their work and be eligible for incentives and rewards. The script handles authentication, module installation, and all relevant Partner ID operations (CRUD: Create, Read, Update, Delete) in an interactive way. A log file is automatically created in the user's home directory ($env:USERPROFILE\azure_script_log.txt) to record all actions.
+---
 
-✨ Features
+## 📝 Inhaltsverzeichnis
 
-    Interactive Menus: Simple and clear menus guide the user through the login and management process.
+- [Funktionen](#funktionen)
+- [Anforderungen](#anforderungen)
+- [Installation](#installation)
+- [Benutzung](#benutzung)
+- [Beispiel](#beispiel)
+- [Troubleshooting](#troubleshooting)
+- [Lizenz](#lizenz)
 
-    Service Principal Authentication: Securely connects to the customer's Azure tenant without needing user credentials.
+---
 
-    Automatic Module Check: Automatically checks if the required PowerShell modules (Az.Accounts, Az.ManagementPartner) are installed and installs them if they are missing.
+## ⚙️ Funktionen
 
-    Comprehensive Partner ID Management:
+- **Interaktive Konsolenmenüs** für alle Aktionen
+- **Service Principal Authentifizierung** (sicher, keine Benutzerinteraktion bei automatisierbarer Anmeldung)
+- **Partner-ID tenantweit setzen, überprüfen, updaten und entfernen**
+- **Detailiertes, farbiges Logging** (inkl. Logfile unter `$env:USERPROFILE\azure_script_log.txt`)
+- Prüft und installiert erforderliche Azure-Module vollautomatisch
+- Fehlerbehandlung mit klaren Fehlermeldungen
 
-        Set (link) a new Partner ID.
+---
 
-        Get (view) the currently linked Partner ID.
+## 🧩 Anforderungen
 
-        Update an existing Partner ID.
+- **Betriebssystem:** Windows (Powershell 5.x oder neuer)
+- **Azure PowerShell Module:** 
+  - `Az.Accounts`
+  - `Az.ManagementPartner`
+- **Berechtigungen:** Service Principal mit Berechtigung auf Tenant-Ebene  
+  (zur Verwaltung von Partner-IDs)
 
-        Remove a Partner ID association.
+---
 
-    Logging: All operations are logged with timestamps to a file for easy tracking and debugging.
+## 🔧 Installation
 
-    User-friendly Feedback: Provides clear success, warning, and error messages with color-coding in the console.
+1. **Klonen** Sie das Repository:
+    ```powershell
+    git clone https://github.com/dein-benutzername/azure-partnerid-manager.git
+    cd azure-partnerid-manager
+    ```
 
-🚀 Getting Started
+2. **Skript starten:**  
+    ```powershell
+    .\azure-partnerid.ps1
+    ```
+    *(Je nach Skript-Namen bitte ersetzen)*
 
-✅ Prerequisites
+Das Skript prüft automatisch, ob die benötigten Module vorhanden (oder als lokale Bundles bereitgestellt) sind und installiert/importiert diese bei Bedarf.
 
-    Windows PowerShell 7+
+---
 
-    An Azure Service Principal with the necessary permissions (at least Contributor role) on the target tenant. You will need its App ID, Tenant ID, and Client Secret.
+## 🚀 Benutzung
 
-💻 Installation & Execution
+1. **Service Principal Login**:  
+   Sie werden nach Tenant ID, App ID und Secret gefragt.
+   > **Hinweis:** Die SP muss `Az.ManagementPartner` Aktionen ausführen dürfen.
 
-    Clone the repository or download the script
-    Bash
+2. **Menüauswahl**:  
+   Nach erfolgreicher Anmeldung erscheint das Hauptmenü mit:
+   - Partner ID setzen/verknüpfen
+   - Verknüpfte Partner ID prüfen
+   - Partner ID aktualisieren
+   - Partner ID entfernen
+   - Beenden
 
-git clone https://github.com/[Your-Username]/[Your-Repo-Name].git
+3. **Log-Vorgänge:**  
+   Alle Vorgänge und Fehler werden auch nach `$env:USERPROFILE\azure_script_log.txt` geschrieben.
 
-Navigate to the script directory
-PowerShell
+---
 
-cd [Your-Repo-Name]
+## 🖼️ Beispiel
 
-Run the script
-You may need to adjust your script execution policy first.
-PowerShell
+![Konsolen-Beispiel](docs/screenshot-demo.png) <!-- Füge z.B. einen Screenshot hinzu -->
 
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
-    ./azure-partner-admin.ps1 # Or your script's filename
+```text
+Geben Sie die Tenant-ID des Kunden ein: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+Geben Sie die App-ID des SP ein: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+Geben Sie das Client-Secret ein: ******
+ℹ️  Anmeldung erfolgreich!
 
-🛠️ Usage
+Wählen Sie eine Aktion:
+1. Partner ID setzen/verknüpfen (tenant-weit)
+2. Verknüpfte Partner ID abrufen und prüfen
+...
 
-The script is fully interactive. Once started, it will guide you through the necessary steps.
+❔ Troubleshooting 
 
-    Authentication:
-    The script will first prompt you to enter the credentials for the Service Principal.
+    Fehler bei Modul-Installation:
+    Stellen Sie sicher, dass Ihr Benutzer das Installieren von PowerShell-Modulen darf (Set-ExecutionPolicy/Internetverbindung ok)
+    Authentifizierungsfehler:
+    Prüfen Sie TenantID, AppID, Secret, Berechtigungen des SP
+    Modul-Konflikte:
+    Entfernen Sie alte AzureRM-Module (werden nicht unterstützt).
+    Unbekannte Fehler:
+    Sichten Sie die detaillierten Log-Einträge unter %USERPROFILE%\azure_script_log.txt
+     
 
-        Tenant ID: The Azure Tenant ID of your customer.
+📜 Lizenz 
 
-        App ID: The Application (client) ID of your Service Principal.
-
-        Client Secret: The secret for your Service Principal.
-
-    Main Menu:
-    After a successful login, you will be presented with the main menu where you can choose the desired action.
-
-    Wählen Sie eine Aktion:
-
-    1. Partner ID setzen/verknüpfen (tenant-weit)
-    2. Verknüpfte Partner ID abrufen und prüfen
-    3. Partner ID aktualisieren
-    4. Partner ID entfernen
-    5. Beenden
-
-    Simply enter the number corresponding to the action you want to perform and follow the on-screen instructions.
-
-🙌 Contributing
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-    Fork the Project
-
-    Create your Feature Branch (git checkout -b feature/AmazingFeature)
-
-    Commit your Changes (git commit -m 'Add some AmazingFeature')
-
-    Push to the Branch (git push origin feature/AmazingFeature)
-
-    Open a Pull Request
-
-📜 License
-
-This project is licensed under the MIT License. See the LICENSE file for more information.
+Dieses Skript/Projekt steht unter der MIT-Lizenz . 
