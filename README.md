@@ -5,6 +5,10 @@
 
 > Ein interaktives PowerShell-Skript zur tenantweiten Verwaltung von Microsoft Partner-IDs in Azure. Es erlaubt Setzen, Prüfen, Aktualisieren und Entfernen der Partner-ID via Service Principal Login.
 
+
+![Screenshot](/example.png)
+
+
 ---
 
 ## 📝 Inhaltsverzeichnis
