@@ -1,6 +1,6 @@
 # PmOne - Azure Partner Linker
 
-![PowerShell](https://img.shields.io/badge/Powershell-v5%2B-blue?logo=powershell)
+![PowerShell](https://img.shields.io/badge/Powershell-v7%2B-blue?logo=powershell)
 ![Azure](https://img.shields.io/badge/Azure-ManagementPartner-blue?logo=microsoft-azure)
 
 > Ein interaktives PowerShell-Skript zur tenantweiten Verwaltung von Microsoft Partner-IDs in Azure. Es erlaubt Setzen, Prüfen, Aktualisieren und Entfernen der Partner-ID via Service Principal Login.
@@ -36,7 +36,7 @@
 
 ## 🧩 Anforderungen
 
-- **Betriebssystem:** Windows (Powershell 5.x oder neuer)
+- **Betriebssystem:** Windows (Powershell 7.x)
 - **Azure PowerShell Module:** 
   - `Az.Accounts`
   - `Az.ManagementPartner`
